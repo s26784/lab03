@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{606F2B95-F98C-48BD-8736-16D14D9CB129}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContainersManager", "ContainersManager\ContainersManager.csproj", "{606F2B95-F98C-48BD-8736-16D14D9CB129}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
