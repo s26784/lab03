@@ -54,11 +54,13 @@ public class GasContainer : Container, IHazardNotifier
                "Curb weight = " + CurbWeight + "kg\n" +
                "Height = " + Height + "m\n" +
                "Depth = " + Depth + "m\n" +
-               "Pressure = " + Pressure + "atm";
+               "Pressure = " + Pressure + "atm\n";
     }
 
     public void Notify()
     {
         throw new NotImplementedException();
     }
+    
+    
 }

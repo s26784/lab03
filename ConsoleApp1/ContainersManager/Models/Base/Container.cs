@@ -11,7 +11,6 @@ public abstract class Container
     protected double Depth{ get; set; }
     protected string SerialNumber{ get; set; }
     protected double LoadCapacity{ get; set; }
-    
 
     public abstract void Deload();
     public  abstract void AddLoad(double loadToAdd);
