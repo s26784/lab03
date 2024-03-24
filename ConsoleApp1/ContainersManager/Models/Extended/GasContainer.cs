@@ -7,7 +7,7 @@ namespace ConsoleApp1.Models.Extended;
 public class GasContainer : Container, IHazardNotifier
 {
 
-    protected double Pressure  { get; set; }
+    private double Pressure  { get; set; }
 
     public GasContainer(double loadWeight, double height, double curbWeight, double depth,
         double loadCapacity, double pressure)
@@ -25,7 +25,7 @@ public class GasContainer : Container, IHazardNotifier
     
     public override void Deload()
     {
-        LoadWeight = LoadWeight * 0.05;
+        LoadWeight*=0.05;
     }
 
     public override void AddLoad(double loadToAdd)
@@ -34,14 +34,14 @@ public class GasContainer : Container, IHazardNotifier
         {
             if (LoadWeight + loadToAdd > LoadCapacity)
             {
-                throw new OverfillException();
+                throw new OverfillException("Too much cargo for container"  + SerialNumber);
             }
 
             LoadWeight += loadToAdd;
         }
         catch (OverfillException overfillException)
         {
-            Console.WriteLine("Too much cargo for container " + SerialNumber);
+            Console.WriteLine(overfillException);
         }
         
     }

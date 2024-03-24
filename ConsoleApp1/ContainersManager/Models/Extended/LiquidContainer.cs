@@ -1,5 +1,6 @@
 ﻿using ConsoleApp1.Interfaces;
 using ConsoleApp1.Models.Base;
+using ConsoleApp1.SpecialExceptions;
 
 namespace ConsoleApp1.Models.Extended;
 
@@ -11,7 +12,7 @@ public class LiquidContainer : Container, IHazardNotifier
         Regular
     }
 
-    protected CargoType Cargo;
+    private CargoType Cargo { get; set; }
 
     public LiquidContainer(double loadWeight, double height, double curbWeight, double depth,
         double loadCapacity, CargoType cargo)
@@ -28,12 +29,29 @@ public class LiquidContainer : Container, IHazardNotifier
 
     public override void Deload()
     {
-        throw new NotImplementedException();
+        LoadWeight = 0;
+        Console.WriteLine("Container is now empty");
     }
 
     public override void AddLoad(double loadToAdd)
     {
-        throw new NotImplementedException();
+        
+        if (Cargo == CargoType.Hazard && (LoadWeight + loadToAdd > 0.5 * LoadCapacity))
+        {
+            Notify();
+            LoadWeight = 0.5 * LoadCapacity;
+            Console.WriteLine("We have filled container to 50% of its max capacity");
+        }
+        else if (Cargo == CargoType.Hazard && (LoadWeight + loadToAdd < 0.5 * LoadCapacity))
+        {
+            LoadWeight += loadToAdd;
+        }
+        else if (Cargo == CargoType.Regular && (LoadWeight + loadToAdd > 0.9 * LoadCapacity))
+        {
+            Notify();
+            LoadWeight = 0.9 * LoadCapacity;
+            Console.WriteLine("We have filled container to 90% of its max capacity");
+        }
     }
 
     public override string ToString()
@@ -44,7 +62,7 @@ public class LiquidContainer : Container, IHazardNotifier
                "Curb weight = " + CurbWeight + "kg\n" +
                "Height = " + Height + "m\n" +
                "Depth = " + Depth + "m\n" +
-               "Cargo = " + Cargo;
+               "Cargo = " + Cargo + "\n";
     }
 
     public void Notify()
