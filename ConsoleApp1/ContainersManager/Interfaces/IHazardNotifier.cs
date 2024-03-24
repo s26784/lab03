@@ -2,6 +2,6 @@
 
 public interface IHazardNotifier
 { 
-    void notify();
+    void Notify();
     
 }

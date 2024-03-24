@@ -13,25 +13,7 @@ public abstract class Container
     protected double LoadCapacity{ get; set; }
     
 
-
-    /*protected Container(double loadWeight, double height, double curbWeight, double depth, string serialNumber,
-        double loadCapacity)
-    {
-        this.LoadWeight = loadWeight;
-        this.Height = height;
-        this.CurbWeight = curbWeight;
-        this.Depth = depth;
-        this.SerialNumber = serialNumber;
-        this.LoadCapacity = loadCapacity;
-    }*/
-
     public abstract void Deload();
     public  abstract void AddLoad(double loadToAdd);
-
-
-
-    /*if (loadToAdd + LoadWeight > LoadCapacity) throw new OverfillException("You have overloaded container");
-    LoadWeight += loadToAdd;*/
-
-
+    
 }

@@ -1,5 +1,6 @@
 ﻿using ConsoleApp1.Interfaces;
 using ConsoleApp1.Models.Base;
+using ConsoleApp1.SpecialExceptions;
 
 namespace ConsoleApp1.Models.Extended;
 
@@ -15,23 +16,48 @@ public class GasContainer : Container, IHazardNotifier
         Height = height;
         CurbWeight = curbWeight;
         Depth = depth;
-        SerialNumber = "KON-L-" + ContainerCounter;
+        SerialNumber = "KON-G-" + ContainerCounter;
         LoadCapacity = loadCapacity;
+        Pressure = pressure;
         ContainerCounter++;
     }
     
     
     public override void Deload()
     {
-        throw new NotImplementedException();
+        LoadWeight = LoadWeight * 0.05;
     }
 
     public override void AddLoad(double loadToAdd)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (LoadWeight + loadToAdd > LoadCapacity)
+            {
+                throw new OverfillException();
+            }
+
+            LoadWeight += loadToAdd;
+        }
+        catch (OverfillException overfillException)
+        {
+            Console.WriteLine("Too much cargo for container " + SerialNumber);
+        }
+        
+    }
+    
+    public override string ToString()
+    {
+        return "Container " + SerialNumber + "\n" +
+               "Load weight = " + LoadWeight + "kg\n" +
+               "Load capacity = " + LoadCapacity + "kg\n" +
+               "Curb weight = " + CurbWeight + "kg\n" +
+               "Height = " + Height + "m\n" +
+               "Depth = " + Depth + "m\n" +
+               "Pressure = " + Pressure + "atm";
     }
 
-    public void notify()
+    public void Notify()
     {
         throw new NotImplementedException();
     }
