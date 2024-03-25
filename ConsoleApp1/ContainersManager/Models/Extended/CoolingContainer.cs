@@ -17,7 +17,7 @@ public class CoolingContainer : Container, IHazardNotifier
         Height = height;
         CurbWeight = curbWeight;
         Depth = depth;
-        SerialNumber = "KON-L-" + ContainerCounter;
+        SerialNumber = "KON-C-" + ContainerCounter;
         LoadCapacity = loadCapacity;
         ContainerCounter++;
         ContainerTemperature = containerTemperature;
@@ -75,6 +75,11 @@ public class CoolingContainer : Container, IHazardNotifier
         throw new NotImplementedException();
     }
     
+    public override double GetLoadWeight()
+    {
+        return LoadWeight;
+    }
+    
     
     public override string ToString()
     {
@@ -87,5 +92,11 @@ public class CoolingContainer : Container, IHazardNotifier
                "Product type = " + ProductType + "\n" +
                "Temperature " + ContainerTemperature +" Celsius degrees\n";
     }
+    
+    public override string GetSerialNumber()
+    {
+        return SerialNumber;
+    }
+    
     
 }

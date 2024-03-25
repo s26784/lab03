@@ -62,5 +62,14 @@ public class GasContainer : Container, IHazardNotifier
         throw new NotImplementedException();
     }
     
+    public override double GetLoadWeight()
+    {
+        return LoadWeight;
+    }
+    
+    public override string GetSerialNumber()
+    {
+        return SerialNumber;
+    }
     
 }

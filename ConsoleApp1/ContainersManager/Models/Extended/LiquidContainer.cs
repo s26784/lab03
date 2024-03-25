@@ -69,4 +69,14 @@ public class LiquidContainer : Container, IHazardNotifier
     {
         Console.WriteLine("Container " + SerialNumber + ": Dangerous action detected!");
     }
+
+    public override double GetLoadWeight()
+    {
+        return LoadWeight;
+    }
+
+    public override string GetSerialNumber()
+    {
+        return SerialNumber;
+    }
 }
